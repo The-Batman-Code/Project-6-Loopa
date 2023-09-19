@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loopa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #fff;
+        }
+
+        #header {
+            padding-left: 20px;
+        }
+
+        #brand-image {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 50px;
+            cursor: pointer;
+        }
+
+        #chat-container {
+            background-color: #333;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 400px;
+        }
+
+        #chat-history {
+            max-height: 500px;
+            overflow-y: auto;
+            background-color: #333;
+            padding: 10px;
+        }
+
+        .message {
+            margin: 10px 0;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .user-message {
+            background-color: #007bff;
+            color: #fff;
+            text-align: right;
+        }
+
+        .server-message {
+            background-color: #333;
+            color: #fff;
+        }
+
+        #chat-form {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        #user-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #777;
+            border-radius: 5px;
+            outline: none;
+            background-color: #222;
+            color: #fff;
+        }
+
+        #user-input::placeholder {
+            color: #777;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Style for the "Chat with data" button */
+        #chat-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        #chat-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Style for the "Reset Chat" button */
+        #reset-chat-button {
+            background-color: #f00;
+            /* Red color, you can customize it */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        #reset-chat-button:hover {
+            background-color: #ff0000;
+            /* Darker red on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <img id="brand-image" src="\static\image.webp" alt="Brand Logo">
+        <h1>Hey there😉!! I am Loopa</h1>
+    </div>
+    <div id="chat-container">
+        <div id="chat-history">
+            <!-- Example user and server messages -->
+            <!-- <div class="message user-message">User: Hello</div>
+            <div class="message server-message">Server: Hi there! How can I help you?</div> -->
+        </div>
+    </div>
+    <form id="chat-form">
+        <input type="text" id="user-input" placeholder="Type your message...">
+        <button type="submit" id="send-button">
+            <span id="send-text">Send</span>
+            <span id="send-spinner" style="display: none;">Loading...</span>
+        </button>
+        <!-- Add the "Reset Chat" button here -->
+        <button id="reset-chat-button">Reset Chat</button>
+    </form>
+
+    <!-- Button for "Chat with data" -->
+    <button id="chat-button">Chat with data</button>
+
+    <script>
+        const chatHistory = document.getElementById('chat-history');
+        const chatForm = document.getElementById('chat-form');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+        const sendText = document.getElementById('send-text');
+        const sendSpinner = document.getElementById('send-spinner');
+        const brandImage = document.getElementById('brand-image');
+
+        // Function to show the loading spinner and hide the send text
+        function showLoading() {
+            sendText.style.display = 'none';
+            sendSpinner.style.display = 'inline-block';
+        }
+
+        // Function to hide the loading spinner and show the send text
+        function hideLoading() {
+            sendText.style.display = 'inline-block';
+            sendSpinner.style.display = 'none';
+        }
+
+        // Function to add a message to the chat history
+        function addMessage(message, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.textContent = `${sender}: ${message}`;
+
+            // Add a class based on the sender
+            if (sender === 'User') {
+                messageDiv.classList.add('message', 'user-message');
+            } else {
+                messageDiv.classList.add('message', 'server-message');
+            }
+
+            chatHistory.appendChild(messageDiv);
+        }
+
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const userMessage = userInput.value.trim();
+
+            if (userMessage === '') return;
+
+            // Show loading spinner
+            showLoading();
+
+            // Add user message to chat history
+            addMessage(userMessage, 'User');
+
+            // Make a POST request to your FastAPI chat endpoint
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `chat=${encodeURIComponent(userMessage)}`,
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                const chatResponse = data.message || 'No response from the server.';
+                addMessage(chatResponse, 'Loopa');
+            }
+
+            // Hide loading spinner
+            hideLoading();
+
+            // Clear the user input field
+            userInput.value = '';
+        });
+        // Event listener for the "Chat with data" button
+        document.getElementById('chat-button').addEventListener('click', () => {
+            // Replace 'https://example.com' with your desired URL
+            const link = 'http://34.29.179.3/';
+            // Open the link in a new tab
+            window.open(link, '_blank');
+        });
+
+        // Event listener for the branding image
+        brandImage.addEventListener('click', () => {
+            // Replace 'https://your-brand-website.com' with your desired URL
+            const brandLink = 'https://heyloopa.com';
+            // Open the link in a new tab
+            window.open(brandLink, '_blank');
+        });
+
+        // Event listener for the "Reset Chat" button
+        document.getElementById('reset-chat-button').addEventListener('click', () => {
+            // Clear the chat history
+            chatHistory.innerHTML = '';
+
+            // Make a GET request to your FastAPI reset_chat endpoint
+            fetch('/reset_chat')
+                .then((response) => {
+                    if (response.ok) {
+                        // Reset successful, you can add any additional handling here
+                    } else {
+                        console.error('Failed to reset chat.');
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error resetting chat:', error);
+                });
+        });
+    </script>
+</body>
+
+</html>
