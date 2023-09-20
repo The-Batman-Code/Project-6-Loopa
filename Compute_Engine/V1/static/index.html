@@ -1,1 +1,408 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loopa</title>
+    <style>
+        /* Global Styles */
+        body {
+            background-color: #000;
+            color: #ddd;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            font-size: 18px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #000000;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            padding: 0;
+            color: #fcfcfc;
+            /* Set the text color to pitch black (#000) */
+        }
+
+        /* Form Styles */
+        form {
+            margin: 20px;
+            padding: 20px;
+            background-color: #000;
+            border-radius: 10px;
+        }
+
+        textarea,
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            background-color: #000;
+            color: #ddd;
+            border-bottom: 2px solid #2962a0;
+            /* Slightly darker blue */
+        }
+
+        button {
+            background-color: #2962a0;
+            /* Slightly darker blue */
+            color: #fff;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Table Styles */
+        .csvTable {
+            display: block;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .csvTable th,
+        .csvTable td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #555;
+        }
+
+        .csvTable th {
+            background-color: #333;
+            color: #2962a0;
+            /* Slightly darker blue */
+        }
+
+        /* Loading Indicator Styles */
+        #loadingIndicator {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #2962a0;
+            /* Slightly darker blue */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto;
+        }
+
+        /* Chat Styles */
+        label {
+            display: block;
+            margin-top: 20px;
+        }
+
+        #chat1Response,
+        #chat2Response {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        /* Dashboard Styles */
+        #report-container {
+            margin: 20px;
+        }
+
+        /* Create Dashboard Button Styles */
+        #createDashboardBtn {
+            background-color: #2962a0;
+            /* Slightly darker blue */
+            color: #fff;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        /* Add a scrollbar to the table container */
+        #tableContainer {
+            max-height: 400px;
+            overflow: auto;
+            /* Use "auto" to add a scrollbar when needed */
+            border: 1px solid #555;
+            /* Add a border for better visibility */
+            padding: 10px;
+            /* Added padding */
+        }
+
+        #branding-logo {
+            position: absolute;
+            top: 10px;
+            /* Adjust this value to control the distance from the top */
+            left: 10px;
+            /* Adjust this value to control the distance from the left */
+        }
+
+        /* New CSS for adjusting elements to the right */
+        .input-container {
+            margin-left: 20px;
+            /* You can adjust this value as needed */
+            margin-right: 20px;
+            /* You can adjust this value as needed */
+        }
+
+        /* Style for the Reset Chat button */
+        .reset-button {
+            background-color: #ff0000;
+            /* Red background color */
+            color: #fff;
+            /* White text color */
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            /* Add a smooth transition effect */
+        }
+
+        .reset-button:hover {
+            background-color: #cc0000;
+            /* Darker red on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="https://heyloopa.com/" target="_blank">
+            <img src="/static/logo.webp" alt="Branding Logo" width="50" height="50" id="branding-logo">
+        </a>
+        <h1>Retrieve and query data powered by Loopa:)</h1>
+    </header>
+
+
+    <!-- Data Retrieval Form -->
+    <form id="dataForm">
+        <textarea id="data_retrieval_text" name="data_retrieval_text"
+            placeholder="Enter text to retrieve data here"></textarea>
+        <button type="button" id="submit_data_retrieval_text" onclick="submitForm('data_retrieval_text')">Retrieve
+            Data</button>
+    </form>
+
+    <!-- Container for tables -->
+    <div id="tableContainer"></div>
+
+    <!-- Input boxes for Chat 1 and Chat 2 -->
+    <div class="input-container">
+        <label for="chat1">Enter query for the first table:</label>
+        <input type="text" id="chat1" name="chat1" placeholder="Table 1 query text here">
+        <button type="button" id="submit_chat1" onclick="callChat1()">Submit query</button>
+        <div id="chat1Response"></div>
+    </div>
+    <div class="input-container">
+        <label for="chat2">Enter query for the second table:</label>
+        <input type="text" id="chat2" name="chat2" placeholder="Table 2 query text here">
+        <button type="button" id="submit_chat2" onclick="callChat2()">Submit query</button>
+        <div id="chat2Response"></div>
+    </div>
+
+    <!-- Create Dashboard button -->
+    <div class="input-container">
+        <button type="button" id="createDashboardBtn" onclick="fetchReports()">Create Dashboard(s)</button>
+    </div>
+
+    <!-- Loading indicator -->
+    <div id="loadingIndicator">
+        <div class="loader"></div>
+        <p>Loading Dashboards...</p>
+    </div>
+
+    <div id="report-container">
+        <!-- Reports will be displayed here -->
+    </div>
+
+    <div class="input-container">
+        <button type="button" id="resetChatBtn" onclick="resetChat()" class="reset-button">Reset Chat</button>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Function to disable a button and show a loading indicator
+        function setLoadingState(buttonId) {
+            const button = document.getElementById(buttonId);
+            button.disabled = true;
+            button.innerHTML = 'Loading...'; // Change button text to "Loading..."
+        }
+
+        // Function to reset a button after loading is complete
+        function resetButton(buttonId, buttonText) {
+            const button = document.getElementById(buttonId);
+            button.disabled = false;
+            button.innerHTML = buttonText;
+        }
+
+        async function submitForm(endpoint) {
+            const text = document.getElementById(endpoint).value;
+            const submitButtonId = `submit_${endpoint}`;
+
+            setLoadingState(submitButtonId); // Set loading state for the button
+
+            try {
+                const response = await fetch('/' + endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams({
+                        [endpoint]: text
+                    })
+                });
+
+                const data = await response.text();
+                const rows = data.split('\\n');
+                const tableContainer = document.getElementById('tableContainer');
+                tableContainer.innerHTML = '';
+
+                const table = document.createElement('table');
+                table.className = 'csvTable';
+
+                rows.forEach((row, rowIndex) => {
+                    const columns = row.split(',');
+                    const tr = document.createElement('tr');
+
+                    columns.forEach((cell, cellIndex) => {
+                        const td = document.createElement('td');
+                        td.textContent = cell.trim();
+                        tr.appendChild(td);
+                    });
+
+                    table.appendChild(tr);
+                });
+
+                tableContainer.appendChild(table);
+                tableContainer.style.display = 'block';
+            } catch (error) {
+                console.error('Error:', error);
+            } finally {
+                resetButton(submitButtonId, '                Submit'); // Reset the button after loading
+            }
+        }
+
+        async function callChat1() {
+            const text = document.getElementById('chat1').value;
+            const submitButtonId = 'submit_chat1';
+
+            setLoadingState(submitButtonId);
+
+            try {
+                const response = await fetch('/data_query_chat_1', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams({
+                        "data_query_chat_1": text
+                    })
+                });
+
+                const result = await response.text();
+                document.getElementById('chat1Response').textContent = result;
+            } catch (error) {
+                console.error('Error:', error);
+            } finally {
+                resetButton(submitButtonId, 'Submit Chat 1');
+            }
+        }
+
+        async function callChat2() {
+            const text = document.getElementById('chat2').value;
+            const submitButtonId = 'submit_chat2';
+
+            setLoadingState(submitButtonId);
+
+            try {
+                const response = await fetch('/data_query_chat_2', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams({
+                        "data_query_chat_2": text
+                    })
+                });
+
+                const result = await response.text();
+                document.getElementById('chat2Response').textContent = result;
+            } catch (error) {
+                console.error('Error:', error);
+            } finally {
+                resetButton(submitButtonId, 'Submit Chat 2');
+            }
+        }
+
+        async function fetchReports() {
+            document.getElementById('loadingIndicator').style.display = 'block';
+
+            try {
+                const response = await fetch('/dashboard');
+                const reportUrls = await response.json();
+                const reportContainer = document.getElementById('report-container');
+
+                reportUrls.forEach(url => {
+                    const iframe = document.createElement('iframe');
+                    iframe.src = url;
+                    iframe.width = '100%';
+                    iframe.height = '600';
+                    reportContainer.appendChild(iframe);
+                });
+            } catch (error) {
+                console.error('Error fetching reports:', error);
+            } finally {
+                document.getElementById('loadingIndicator').style.display = 'none';
+            }
+        }
+
+        // Function to reset chat
+        function resetChat() {
+            // Clear the chat responses
+            document.getElementById('chat1Response').textContent = '';
+            document.getElementById('chat2Response').textContent = '';
+
+            // Clear the data in the input fields
+            document.getElementById('chat1').value = '';
+            document.getElementById('chat2').value = '';
+
+            // Hide the table container
+            document.getElementById('tableContainer').style.display = 'none';
+
+            // Clear the report container
+            document.getElementById('report-container').innerHTML = '';
+
+            // Make a request to reset the server-side data
+            fetch('/reset_chat', {
+                method: 'GET'
+            }).then(response => {
+                if (response.status === 200) {
+                    // Reset successful, no further action needed
+                } else {
+                    console.error('Error resetting chat');
+                }
+            }).catch(error => {
+                console.error('Error resetting chat:', error);
+            });
+        }
+
+
+        // Call the fetchReports function when the page loads
+        // window.onload = fetchReports;
+    </script>
+</body>
+
+</html>
