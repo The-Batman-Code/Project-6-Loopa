@@ -156,7 +156,7 @@ def write_to_file(data, session_ID):
 
 
 def get_url_fetch_data(json_text):
-    url = json_text["url"] + "&apikey=GBRRJSDIX4A7OJ7A"
+    url = json_text["url"] + "&apikey="
     # print(url)
     r = requests.get(url)
     # print(r.headers.get("Content-Type"))
@@ -164,7 +164,7 @@ def get_url_fetch_data(json_text):
 
 
 # def get_url_fetch_data(json_text):
-#     url = json_text["url"] + "&apikey=GBRRJSDIX4A7OJ7A"
+#     url = json_text["url"] + "&apikey="
 #     # print(url)
 #     r = requests.get(url)
 #     # print(r.headers.get("Content-Type"))
