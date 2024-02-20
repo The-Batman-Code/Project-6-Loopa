@@ -29,6 +29,14 @@ This project offers a two-pronged approach to investment exploration. One, a cha
 ![](Images/config-4.png)
 
 4. Now we will need to work pretty deep in Ubuntu to set up the app. Hence, we will install a UI on our VM to make things easier for us. Install UI on VM by [clicking here](https://cloud.google.com/architecture/chrome-desktop-remote-on-compute-engine#gnome). I personally prefer Genome for the UI🫠.
+5. After the UI is successfully set up, login to your VM. You will be greeted with this👇
+
+![](Images/ui-1.png)
+
+6. Click on the activities tab on the left upper corner. Search for 'Sofware' and install VS Code. Once VS Code is installed open it.
+
+![](Images/vs-1.png)
+
 
 
 
