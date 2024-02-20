@@ -14,4 +14,31 @@ This project offers a two-pronged approach to investment exploration. One, a cha
 
 ![](Images/archi-2.png)
 
+# How to deploy the Data Query Interface?
+1. Head over to your GCP console and create a service account json key with the following configurations - 
+
+![](Images/config-1.png)
+
+2. Replace the info in the file 'loopa_key.json' with you json key info in the 'Compute_Engine/V2' folder.
+3. Head over to the Compute Engine section in GCP and create a VM of the following configurations - 
+
+![](Images/config-1.png)
+
+![](Images/config-2.png)
+
+![](Images/config-3.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
