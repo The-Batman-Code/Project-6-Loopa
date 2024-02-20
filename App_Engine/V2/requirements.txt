@@ -1,0 +1,12 @@
+vertexai
+fastapi
+uvicorn
+python-multipart
+starlette
+apscheduler
+google-auth 
+google-auth-oauthlib 
+google-auth-httplib2
+google-cloud-aiplatform
+pandasai
+google-generativeai
