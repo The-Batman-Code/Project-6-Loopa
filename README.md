@@ -12,6 +12,8 @@ Forex(FX):[CURRENCY_EXHANGE_RATE,FX_DAILY,FX_WEEKLY,FX_MONTHLY],
 Cryptocurrencies:[CURRENCY_EXCHANGE_RATE,DIGITAL_CURRENCY_DAILY,DIGITAL_CURRENCY_WEEKLY,DIGITAL_CURRENCY_MONTHLY],
 Economic Inidicators:[REAL_GDP,REAL_GDP_PER_CAPITA,TREASURY_YIELD,FEDERAL_FUNDS_RATE,CPI,INFLATION,RETAIL_SALES,DURABLES,UNEMPLOYMENT,NONFARM_PAYROLL]>
 
+Note - For the full info take a look at the alpha_vantage_prompt.txt file in the repo.
+
 #### Few exapmple questions to ask in Data Query Interface - 
 1. Give me usd to inr forex daily?
 Query for table : What is the date range of the data? / Give me mean of the open and low column?
