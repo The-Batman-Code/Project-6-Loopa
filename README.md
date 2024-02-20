@@ -6,3 +6,7 @@ This project offers a two-pronged approach to investment exploration. One, a cha
 ![](Images/loopa-1.png)
 
 ![](Images/loopa-2.png)
+
+# Architecture - 
+
+![](Images/arch-1.png)
