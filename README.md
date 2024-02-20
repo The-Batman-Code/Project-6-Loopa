@@ -81,7 +81,13 @@ gcloud app deploy
 ```
 12. Proceed accordingly in the terminal.
 13. After the deployment you should be able to access the project using the link displayed in the terminal.
+14. Clicking on the Chat with data button on the right bottom corner will take you to the Data Query Interface🫠.
 
+# Troubleshooting - 
+1. Raise and error, I will try to resolve it.
+2. Use Gemini and the internet wisely before raising error😂.
+
+#### Thank you for getting till here. Keep hunting!!! Keep grinding!!! See you in the next project🚀🚀
 
 
 
