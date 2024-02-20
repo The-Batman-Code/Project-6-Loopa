@@ -54,6 +54,13 @@ sudo apt-install python3-pip
 15. I know this step may be tough to do but with a bit of patience and help from Gemini you can make it successfully.
 16. Congrats🚀🚀 The Data Query Interface is now online. You should be able to access it using the external IP address of your VM.
 
+# How to deploy the Chat Interface? 
+1. Head over to your GCP Console and open your Code Editor using the Cloud Shell.
+2. Open your default folder in the New Code Editor and make a folder named 'loopa'.
+3. Create the following folder structure and files in the loopa folder. 
+
+![](Images/ae-1.png)
+
 
 
 
