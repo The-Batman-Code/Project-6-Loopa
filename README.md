@@ -28,7 +28,7 @@ This project offers a two-pronged approach to investment exploration. One, a cha
 
 ![](Images/config-4.png)
 
-4. Now we will need to work pretty deep in Ubuntu to set up the app. Hence, we will install a UI on our VM to make things easier for us. Install UI on VM by [clicking here](https://reactnative.dev/docs/environment-setup](https://cloud.google.com/architecture/chrome-desktop-remote-on-compute-engine#xfce)https://cloud.google.com/architecture/chrome-desktop-remote-on-compute-engine#xfce). I personally prefer Genome for the UI🫠.
+4. Now we will need to work pretty deep in Ubuntu to set up the app. Hence, we will install a UI on our VM to make things easier for us. Install UI on VM by [clicking here](https://cloud.google.com/architecture/chrome-desktop-remote-on-compute-engine#gnome). I personally prefer Genome for the UI🫠.
 
 
 
