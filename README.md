@@ -12,4 +12,6 @@ This project offers a two-pronged approach to investment exploration. One, a cha
 # Architecture - 
 ![](Images/archi-1.png)
 
+![](Images/archi-1.png)
+
 
