@@ -37,6 +37,10 @@ This project offers a two-pronged approach to investment exploration. One, a cha
 
 ![](Images/vs-1.png)
 
+7. Create a folder named myapp and use it as the working directory in VS Code.
+8. Create the following folder structure and files in your working directory. Then copy-paste the code name wise from the folder 'Compute_Engine/V2' onto the files created on the VM using VS Code. No Need to make the '__pycache__, cache, venv' folders and 'access_log, error_log, pandasai.log' files. Make sure to put your GCP project ID and Alpha Vantage API key in the code. 
+
+![](Images/folder-1.png)
 
 
 
