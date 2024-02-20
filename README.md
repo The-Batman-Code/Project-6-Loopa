@@ -10,9 +10,9 @@ This project offers a two-pronged approach to investment exploration. One, a cha
 ![](Images/loopa-2.png)
 
 # Architecture - 
-![](Images/archi-1.png)
+![](Images/archie-1.png)
 
-![](Images/archi-2.png)
+![](Images/archie-2.png)
 
 # How to deploy the Data Query Interface?
 1. Head over to your GCP console and create a service account json key with the following configurations - 
