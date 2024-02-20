@@ -3,6 +3,26 @@
 # Introduction - 
 This project offers a two-pronged approach to investment exploration. One, a chat interface powered by the investment-focused LLM Loopa provides personalized advice. Two, another LLM taps into Alpha Vantage's market data, allowing you to ask questions like "Give me daily forex rates in INR" and get the answer in a downloadable CSV format. You can then delve deeper using Pandas or visualize it with an auto-generated dashboard. It's your one-stop shop for investment research and analysis!
 
+# Examples to use it - 
+#### You can ask queries relating to the below topics👇
+The sections are <Core Stock APIs:[TIME_SERIES_INTRADAY,TIME_SERIES_DAILY,TIME_SERIES_WEEKLY,TIME_SERIES_MONTHLY,GLOBAL_QUOTE,SYMBOL_SEARCH,MARKET_STATUS],
+Alpha Intellligence:[NEWS_SENTIMENT,TOP_GAINERS_LOSERS],
+Fundamental Data:[OVERVIEW,INCOME_STATEMENT,BALANCE_SHEET,CASH_FLOW,EARNINGS,LISTING_STATUS,EARNINGS_CALENDAR,IPO_CALENDAR],
+Forex(FX):[CURRENCY_EXHANGE_RATE,FX_DAILY,FX_WEEKLY,FX_MONTHLY],
+Cryptocurrencies:[CURRENCY_EXCHANGE_RATE,DIGITAL_CURRENCY_DAILY,DIGITAL_CURRENCY_WEEKLY,DIGITAL_CURRENCY_MONTHLY],
+Economic Inidicators:[REAL_GDP,REAL_GDP_PER_CAPITA,TREASURY_YIELD,FEDERAL_FUNDS_RATE,CPI,INFLATION,RETAIL_SALES,DURABLES,UNEMPLOYMENT,NONFARM_PAYROLL]>
+
+#### Few exapmple questions to ask in Data Query Interface - 
+1. Give me usd to inr forex daily?
+Query for table : What is the date range of the data? / Give me mean of the open and low column?
+
+2. Give me inflation data of the US monthly?
+ Query for table : what is the average inflation? / Give me the mean of the value data
+
+3. Give me the income statement of google
+ Query for table1 : what is the average total revenue?
+ Query for table2 : Give me the difference between the average of gross profit and total revenue
+
 # Chat Interface - 
 ![](Images/loopa-1.png)
 
