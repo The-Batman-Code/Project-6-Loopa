@@ -47,7 +47,12 @@ This project offers a two-pronged approach to investment exploration. One, a cha
 ```
 sudo apt-install python3-pip
 ```
-11. Install all the libraries mentioned in the requirements.txt file in 'Compute_Engine/V2' folder. 
+11. Install all the libraries mentioned in the requirements.txt file in 'Compute_Engine/V2' folder.
+12. You should now be able to run the project locally on the Ubuntu VM by running the 'faster.py' file. After it's working locally, proceed to the next step to be able to access it over the internet.
+13. To be able to take your project online, refer to this link by [clicking here](https://www.slingacademy.com/article/deploying-fastapi-on-ubuntu-with-nginx-and-lets-encrypt/)
+14. While going through the above tutorial, use the 'gunicorn_conf.py and service.txt' files that I have provided in 'Compute_Engine/V2' folder not of the previous website. Also make sure to change the path addresses accordingly.
+15. I know this step may be tough to do but with a bit of patience and help from Gemini you can make it successfully.
+16. Congrats🚀🚀 The Data Query Interface is now online. You should be able to access it using the external IP address of your VM.
 
 
 
