@@ -40,7 +40,14 @@ This project offers a two-pronged approach to investment exploration. One, a cha
 7. Create a folder named myapp and use it as the working directory in VS Code.
 8. Create the following folder structure and files in your working directory. Then copy-paste the code name wise from the folder 'Compute_Engine/V2' onto the files created on the VM using VS Code. No Need to make the '__pycache__, cache, venv' folders and 'access_log, error_log, pandasai.log' files. Make sure to put your GCP project ID and Alpha Vantage API key in the code. 
 
-![](Images/folder-1.png)
+![](Images/folder-2.png)
+
+9. Now change the file paths in the codes according to your VM.
+10. Open the terminal and install pip using the following command - 
+```
+sudo apt-install python3-pip
+```
+11. Install all the libraries mentioned in the requirements.txt file in 'Compute_Engine/V2' folder. 
 
 
 
