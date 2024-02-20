@@ -1,0 +1,21 @@
+[Unit]
+
+Description=Gunicorn Daemon for FastAPI example
+
+After=network.target
+
+
+[Service]
+
+User=ksgcpcloud
+
+Group=www-data
+
+WorkingDirectory=/home/ksgcpcloud/myapp
+
+ExecStart=/home/ksgcpcloud/myapp/venv/bin/gunicorn -c gunicorn_conf.py faster:app
+
+
+[Install]
+
+WantedBy=multi-user.target
