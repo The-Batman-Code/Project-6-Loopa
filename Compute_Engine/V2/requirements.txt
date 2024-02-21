@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+apscheduler
+python-multipart
+google-cloud-aiplatform
+pandasai
+ydata-profiling==4.4.0
+pydantic==1.10.14
+matplotlib==3.7.3
