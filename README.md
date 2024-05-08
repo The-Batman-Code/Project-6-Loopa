@@ -26,6 +26,7 @@ Note - For the full info take a look at the 'alpha_vantage_prompt.txt' file in t
 3. Give me the income statement of google
  
      Query for table1 : what is the average total revenue?
+   
      Query for table2 : Give me the difference between the average of gross profit and total revenue
 
 # Chat Interface - 
